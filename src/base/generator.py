@@ -1,0 +1,1 @@
+# BaseGenerator ABC
