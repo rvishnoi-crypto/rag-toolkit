@@ -52,6 +52,19 @@ semantic = [
 bm25 = [
     "rank-bm25>=0.2.2",
 ]
+huggingface = [
+    "langchain-huggingface>=0.1.0",
+    "sentence-transformers>=3.0.0",
+]
+cohere = [
+    "langchain-cohere>=0.3.0",
+]
+unstructured = [
+    "unstructured[pdf]>=0.15.0",
+]
+markitdown = [
+    "markitdown>=0.1.0",
+]
 
 [tool.setuptools.packages.find]
 where = ["src"]
