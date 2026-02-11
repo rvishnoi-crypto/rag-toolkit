@@ -9,6 +9,7 @@ from .document import Chunk, ChunkMetadata, ScoredDocument
 from .query import (
     QueryType,
     QueryClassification,
+    FullRouteClassification,
     TranslatedQuery,
     MultiQueryExpansion,
     SubQuestions,
@@ -35,6 +36,7 @@ __all__ = [
     # Query
     "QueryType",
     "QueryClassification",
+    "FullRouteClassification",
     "TranslatedQuery",
     "MultiQueryExpansion",
     "SubQuestions",

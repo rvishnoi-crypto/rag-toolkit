@@ -119,6 +119,51 @@ class HyDEDocument(BaseModel):
 
 
 # ---------------------------------------------------------------------------
+# Full route classification (LLM decides type + path in one call)
+# ---------------------------------------------------------------------------
+
+class FullRouteClassification(BaseModel):
+    """
+    LLM-produced classification that decides BOTH query type and retrieval path.
+
+    Instead of classifying the query type and then using keyword heuristics
+    to pick the path, we let the LLM make the full routing decision in one
+    structured output call. The LLM sees the available data sources and
+    chooses the best path.
+
+    This is how production systems route queries — the LLM understands
+    intent far better than keyword matching. "What drove our Q4 numbers?"
+    has zero SQL keywords but the LLM knows it needs data.
+    """
+
+    query_type: QueryType = Field(description="The classified category of the query")
+    retrieval_path: str = Field(
+        description=(
+            "Which retrieval path to use: "
+            "'vector' for document/knowledge search, "
+            "'structured' for database/SQL queries, "
+            "'hybrid' for queries that need both documents and data"
+        ),
+    )
+    strategy: str = Field(
+        description=(
+            "Retrieval strategy: "
+            "'factual', 'analytical', 'opinion', 'contextual' for vector path; "
+            "'text_to_sql' for structured path; "
+            "'hybrid' for hybrid path"
+        ),
+    )
+    confidence: float = Field(
+        default=0.0, ge=0.0, le=1.0,
+        description="How confident the classification is (0-1)",
+    )
+    reasoning: str = Field(
+        default="",
+        description="Brief explanation of the routing decision",
+    )
+
+
+# ---------------------------------------------------------------------------
 # Query construction (NL → structured query for DBs)
 # ---------------------------------------------------------------------------
 
