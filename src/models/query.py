@@ -119,18 +119,101 @@ class HyDEDocument(BaseModel):
 
 
 # ---------------------------------------------------------------------------
+# Query construction (NL → structured query for DBs)
+# ---------------------------------------------------------------------------
+
+class QueryTarget(str, Enum):
+    """
+    Which backend a constructed query targets.
+
+    The router uses this to decide whether to send the query down
+    the vector path (translator → vector store) or the structured
+    path (constructor → database).
+    """
+
+    VECTOR_STORE = "vector_store"
+    SQL_DATABASE = "sql_database"
+    GRAPH_DATABASE = "graph_database"
+    METADATA_FILTER = "metadata_filter"
+
+
+class ConstructedQuery(BaseModel):
+    """
+    A natural language query converted into a structured query.
+
+    This is the output of the query constructor — it holds the actual
+    query string (SQL, Cypher, metadata filter dict, etc.) plus metadata
+    about what produced it.
+
+    Examples:
+        ConstructedQuery(
+            original="revenue over 1M last quarter",
+            constructed="SELECT * FROM revenue WHERE amount > 1000000 AND quarter = 'Q4'",
+            target=QueryTarget.SQL_DATABASE,
+        )
+        ConstructedQuery(
+            original="find users connected to Alice",
+            constructed="MATCH (a:User {name: 'Alice'})-[:FOLLOWS]->(f) RETURN f",
+            target=QueryTarget.GRAPH_DATABASE,
+        )
+        ConstructedQuery(
+            original="papers about RAG from 2024",
+            constructed='{"year": 2024, "topic": "RAG"}',
+            target=QueryTarget.METADATA_FILTER,
+        )
+    """
+
+    original: str = Field(description="The original natural language query")
+    constructed: str = Field(description="The structured query (SQL, Cypher, filter JSON, etc.)")
+    target: QueryTarget = Field(description="Which backend this query targets")
+    method: str = Field(
+        default="text_to_sql",
+        description="Which construction method produced this (text_to_sql, text_to_cypher, metadata_filter)",
+    )
+
+
+# ---------------------------------------------------------------------------
 # Route decision (output of the router)
 # ---------------------------------------------------------------------------
+
+class RetrievalPath(str, Enum):
+    """
+    Which retrieval path the router chooses.
+
+    VECTOR:     query goes through translator → vector store
+    STRUCTURED: query goes through constructor → database
+    HYBRID:     both paths run, results are merged
+    """
+
+    VECTOR = "vector"
+    STRUCTURED = "structured"
+    HYBRID = "hybrid"
+
 
 class RouteDecision(BaseModel):
     """
     The router's decision on how to handle a query.
 
-    Contains the classification plus the chosen strategy name, so downstream
-    components know which retrieval path to take.
+    Contains the classification, the chosen retrieval path, and the
+    strategy name. This is the single object that tells downstream
+    components exactly what to do.
+
+    Examples:
+        # Pure vector search for a factual question
+        RouteDecision(classification=..., path=RetrievalPath.VECTOR, strategy="factual")
+
+        # SQL query for a data lookup
+        RouteDecision(classification=..., path=RetrievalPath.STRUCTURED, strategy="text_to_sql")
+
+        # Both paths for a question that needs docs + data
+        RouteDecision(classification=..., path=RetrievalPath.HYBRID, strategy="hybrid")
     """
 
     classification: QueryClassification
+    path: RetrievalPath = Field(
+        default=RetrievalPath.VECTOR,
+        description="Which retrieval path to use",
+    )
     strategy: str = Field(
         default="default",
         description="Name of the retrieval strategy to use",

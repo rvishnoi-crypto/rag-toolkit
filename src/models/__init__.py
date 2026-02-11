@@ -13,6 +13,9 @@ from .query import (
     MultiQueryExpansion,
     SubQuestions,
     HyDEDocument,
+    QueryTarget,
+    ConstructedQuery,
+    RetrievalPath,
     RouteDecision,
 )
 from .result import (
@@ -36,6 +39,9 @@ __all__ = [
     "MultiQueryExpansion",
     "SubQuestions",
     "HyDEDocument",
+    "QueryTarget",
+    "ConstructedQuery",
+    "RetrievalPath",
     "RouteDecision",
     # Result
     "RetrievalResult",
