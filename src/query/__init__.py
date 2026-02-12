@@ -13,6 +13,7 @@ from .translation import (
     HyDETranslator,
 )
 from .routing import LLMRouter, RuleBasedRouter
+from .construction import TextToSQLConstructor
 
 __all__ = [
     # Translators
@@ -24,4 +25,6 @@ __all__ = [
     # Routers
     "LLMRouter",
     "RuleBasedRouter",
+    # Constructors
+    "TextToSQLConstructor",
 ]

@@ -57,7 +57,7 @@ class SimpleGenerator(BaseGenerator):
     def __init__(self, llm_config: LLMConfig = None):
         config = llm_config or LLMConfig()
         self._llm = get_llm(config)
-        self._model_name = f"{config.provider.value}/{config.model}"
+        self._model_name = f"{config.provider.value}/{config.model_name}"
 
         # Prompt for generation WITH retrieved context
         self._context_prompt = PromptTemplate(
