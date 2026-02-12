@@ -45,13 +45,11 @@ class GenerationResult(BaseModel):
     """
 
     answer: str = Field(description="The generated answer")
-    query: str = Field(description="The original user query")
-    sources: list[ScoredDocument] = Field(
+    sources: list[str] = Field(
         default_factory=list,
-        description="Documents used to generate the answer",
+        description="Source identifiers (file names, URLs) used to generate the answer",
     )
-    technique: str = Field(default="simple", description="Which RAG technique produced this")
-    metadata: dict = Field(default_factory=dict, description="Additional technique-specific info")
+    model: str = Field(default="", description="Model that produced this answer")
 
 
 # ---------------------------------------------------------------------------
@@ -109,14 +107,23 @@ class RAGResponse(BaseModel):
     """
     The complete response from any RAG technique.
 
-    This is what users get back. It wraps GenerationResult with
-    optional retrieval details and validation scores, so you get
-    a consistent interface regardless of which technique ran.
+    This is what users get back from rag.query(). Consistent interface
+    regardless of which technique ran — SimpleRAG, AdaptiveRAG, or SelfRAG.
+
+    The metadata dict carries technique-specific info:
+        - AdaptiveRAG: query_type, strategy, confidence
+        - SelfRAG: support_score, utility_score, retry_count, etc.
     """
 
-    result: GenerationResult
-    retrieval: Optional[RetrievalResult] = None
-    validation: Optional[dict] = Field(
-        default=None,
-        description="Validation scores from Self-RAG (relevance, support, utility)",
+    answer: str = Field(description="The generated answer")
+    retrieval: Optional[RetrievalResult] = Field(
+        default=None, description="Retrieval details (documents, scores, strategy)",
+    )
+    generation: Optional[GenerationResult] = Field(
+        default=None, description="Generation details (model, sources)",
+    )
+    technique: str = Field(default="simple_rag", description="Which RAG technique produced this")
+    metadata: dict = Field(
+        default_factory=dict,
+        description="Technique-specific info (query_type, support_score, retry_count, etc.)",
     )
