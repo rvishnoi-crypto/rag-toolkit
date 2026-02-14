@@ -20,7 +20,7 @@ The key pattern from GeneralBot we preserve:
 This gives us typed, validated outputs from the LLM every time.
 """
 
-from langchain.prompts import PromptTemplate
+from langchain_core.prompts import PromptTemplate
 
 from base.translator import BaseTranslator
 from config import LLMConfig

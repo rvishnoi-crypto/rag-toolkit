@@ -32,7 +32,7 @@ Usage:
 
 import re
 
-from langchain.prompts import PromptTemplate
+from langchain_core.prompts import PromptTemplate
 
 from base.router import BaseRouter
 from config import LLMConfig

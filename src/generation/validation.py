@@ -34,7 +34,7 @@ Usage:
     # → UtilityScore(score=0.8, reasoning="Comprehensive answer...")
 """
 
-from langchain.prompts import PromptTemplate
+from langchain_core.prompts import PromptTemplate
 
 from config import LLMConfig
 from models.result import RelevanceScore, RetrievalResult, SupportScore, UtilityScore

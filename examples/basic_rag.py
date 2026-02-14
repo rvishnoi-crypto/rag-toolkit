@@ -21,7 +21,7 @@ def main():
     # --- Option 1: Simplest — just pass a PDF with Anthropic ---
     rag = SimpleRAG(
         pdf_path="data/exam_guide.pdf",
-        llm_config=LLMConfig(provider="anthropic", model_name="claude-sonnet-4-5-20250929"),
+        llm_config=LLMConfig(provider="openai", model_name="gpt-5-mini"),
     )
 
     questions = [
@@ -41,8 +41,8 @@ def main():
     custom_rag = SimpleRAG(
         pdf_path="data/exam_guide.pdf",
         llm_config=LLMConfig(
-            provider="anthropic",
-            model_name="claude-sonnet-4-5-20250929",
+            provider="openai",
+            model_name="gpt-5-mini",
             temperature=0.0,
         ),
         retriever_config=RetrieverConfig(k=6),

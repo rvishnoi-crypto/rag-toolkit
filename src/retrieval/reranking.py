@@ -23,7 +23,7 @@ Usage:
     reranked = reranker.rerank(query, result, top_k=4)
 """
 
-from langchain.prompts import PromptTemplate
+from langchain_core.prompts import PromptTemplate
 
 from config import LLMConfig
 from models.document import ScoredDocument

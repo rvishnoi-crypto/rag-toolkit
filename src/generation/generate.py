@@ -28,7 +28,7 @@ Usage:
     print(result.answer)
 """
 
-from langchain.prompts import PromptTemplate
+from langchain_core.prompts import PromptTemplate
 
 from base.generator import BaseGenerator
 from config import LLMConfig

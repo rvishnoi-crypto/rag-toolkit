@@ -13,7 +13,7 @@ Why separate BaseLoader and BaseChunker?
 
 from abc import ABC, abstractmethod
 
-from langchain.schema import Document
+from langchain_core.documents import Document
 
 from config import ChunkingConfig
 

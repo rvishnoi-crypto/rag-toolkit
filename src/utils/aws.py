@@ -23,7 +23,7 @@ import os
 import tempfile
 from typing import Optional
 
-from langchain.schema import Document
+from langchain_core.documents import Document
 
 
 class S3DocumentLoader:

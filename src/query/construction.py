@@ -27,7 +27,7 @@ Usage:
     result = retriever.retrieve_structured(constructed)
 """
 
-from langchain.prompts import PromptTemplate
+from langchain_core.prompts import PromptTemplate
 from pydantic import BaseModel, Field
 
 from base.constructor import BaseQueryConstructor
