@@ -4,9 +4,9 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 
-from techniques.simple import SimpleRAG
-from config import LLMConfig, RetrieverConfig
-from models.result import RAGResponse, RetrievalResult, GenerationResult
+from rag_toolkit.techniques.simple import SimpleRAG
+from rag_toolkit.config import LLMConfig, RetrieverConfig
+from rag_toolkit.models.result import RAGResponse, RetrievalResult, GenerationResult
 
 
 class TestSimpleRAG:

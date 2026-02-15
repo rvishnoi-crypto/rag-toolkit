@@ -1,23 +1,17 @@
 """
 Shared test fixtures for the rag-toolkit test suite.
 
-Adds src/ to the Python path so imports work like they do in the package.
 Provides reusable fixtures: sample documents, configs, mock vector stores.
 """
 
-import sys
-from pathlib import Path
 from unittest.mock import MagicMock
 
 import pytest
 from langchain.schema import Document
 
-# Add src/ to path so tests can import like the package does
-sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
-
-from config import LLMConfig, EmbeddingConfig, ChunkingConfig, RetrieverConfig, VectorStoreConfig
-from models.document import Chunk, ChunkMetadata, ScoredDocument
-from models.result import RetrievalResult, GenerationResult
+from rag_toolkit.config import LLMConfig, EmbeddingConfig, ChunkingConfig, RetrieverConfig, VectorStoreConfig
+from rag_toolkit.models.document import Chunk, ChunkMetadata, ScoredDocument
+from rag_toolkit.models.result import RetrievalResult, GenerationResult
 
 
 # ---------------------------------------------------------------------------

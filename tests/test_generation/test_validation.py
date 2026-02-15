@@ -2,15 +2,15 @@
 
 from unittest.mock import MagicMock, patch
 
-from generation.validation import (
+from rag_toolkit.generation.validation import (
     RelevanceChecker,
     SupportChecker,
     UtilityChecker,
     RetrievalDecider,
 )
-from config import LLMConfig
-from models.result import RelevanceScore, SupportScore, UtilityScore, RetrievalResult
-from models.document import Chunk, ChunkMetadata, ScoredDocument
+from rag_toolkit.config import LLMConfig
+from rag_toolkit.models.result import RelevanceScore, SupportScore, UtilityScore, RetrievalResult
+from rag_toolkit.models.document import Chunk, ChunkMetadata, ScoredDocument
 
 
 def _mock_structured_output(mock_get_llm, return_value):

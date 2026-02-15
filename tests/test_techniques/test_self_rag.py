@@ -4,9 +4,9 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 
-from techniques.self_rag import SelfRAG
-from config import LLMConfig
-from models.result import RAGResponse, SupportScore, UtilityScore
+from rag_toolkit.techniques.self_rag import SelfRAG
+from rag_toolkit.config import LLMConfig
+from rag_toolkit.models.result import RAGResponse, SupportScore, UtilityScore
 
 
 class TestSelfRAG:

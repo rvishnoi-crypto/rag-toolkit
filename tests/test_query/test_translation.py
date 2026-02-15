@@ -2,15 +2,15 @@
 
 from unittest.mock import MagicMock, patch
 
-from query.translation import (
+from rag_toolkit.query.translation import (
     QueryRewriter,
     MultiQueryTranslator,
     StepBackTranslator,
     DecompositionTranslator,
     HyDETranslator,
 )
-from config import LLMConfig
-from models.query import TranslatedQuery, MultiQueryExpansion, SubQuestions, HyDEDocument
+from rag_toolkit.config import LLMConfig
+from rag_toolkit.models.query import TranslatedQuery, MultiQueryExpansion, SubQuestions, HyDEDocument
 
 
 class TestQueryRewriter:

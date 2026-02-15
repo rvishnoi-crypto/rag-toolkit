@@ -7,61 +7,62 @@ rag-toolkit/
 ├── LICENSE
 ├── .gitignore
 │
-├── src/                        # All source code
-│   ├── __init__.py
-│   ├── config.py               # All Pydantic config models (LLMConfig, etc.)
-│   │
-│   ├── models/                 # Data contracts (Pydantic models)
-│   │   ├── __init__.py
-│   │   ├── query.py            # QueryType, TranslatedQuery, RouteDecision, ...
-│   │   ├── document.py         # Chunk, ChunkMetadata, ScoredDocument
-│   │   └── result.py           # RetrievalResult, GenerationResult, RAGResponse
-│   │
-│   ├── base/                   # Abstract base classes
-│   │   ├── __init__.py
-│   │   ├── retriever.py        # BaseRetriever ABC
-│   │   ├── translator.py       # BaseTranslator ABC
-│   │   ├── generator.py        # BaseGenerator ABC
-│   │   ├── indexer.py          # BaseIndexer ABC
-│   │   └── router.py           # BaseRouter ABC
-│   │
-│   ├── query/                  # Query understanding
-│   │   ├── __init__.py
-│   │   ├── translation.py      # QueryRewriter, MultiQuery, HyDE, Decomposition, StepBack
-│   │   └── routing.py          # LLMRouter, RuleBasedRouter
-│   │
-│   ├── indexing/               # Document ingestion pipeline
-│   │   ├── __init__.py
-│   │   ├── chunking.py         # RecursiveChunker, SemanticChunker, UnstructuredChunker
-│   │   ├── embeddings.py       # get_embeddings() factory
-│   │   └── vectorstore.py      # create_vector_store(), load_vector_store()
-│   │
-│   ├── retrieval/              # Document retrieval
-│   │   ├── __init__.py
-│   │   ├── search.py           # SimilarityRetriever, MMRRetriever
-│   │   └── reranking.py        # LLMReranker, DiversityReranker
-│   │
-│   ├── generation/             # Answer generation + validation
-│   │   ├── __init__.py
-│   │   ├── generate.py         # SimpleGenerator
-│   │   └── validation.py       # RelevanceChecker, SupportChecker, UtilityChecker
-│   │
-│   ├── graphs/                 # LangGraph state machines
-│   │   ├── __init__.py
-│   │   ├── state.py            # AdaptiveState, SelfRAGState (TypedDict)
-│   │   ├── adaptive.py         # build_adaptive_graph() → compiled StateGraph
-│   │   └── self_rag.py         # build_self_rag_graph() → compiled StateGraph
-│   │
-│   ├── techniques/             # User-facing orchestrators
-│   │   ├── __init__.py
-│   │   ├── simple.py           # SimpleRAG class
-│   │   ├── adaptive.py         # AdaptiveRAG class
-│   │   └── self_rag.py         # SelfRAG class
-│   │
-│   └── utils/                  # Shared helpers
+├── src/
+│   └── rag_toolkit/            # Installable package
 │       ├── __init__.py
-│       ├── helpers.py          # get_llm() factory, replace_t_with_space()
-│       └── aws.py              # S3DocumentLoader
+│       ├── config.py           # All Pydantic config models (LLMConfig, etc.)
+│       │
+│       ├── models/             # Data contracts (Pydantic models)
+│       │   ├── __init__.py
+│       │   ├── query.py        # QueryType, TranslatedQuery, RouteDecision, ...
+│       │   ├── document.py     # Chunk, ChunkMetadata, ScoredDocument
+│       │   └── result.py       # RetrievalResult, GenerationResult, RAGResponse
+│       │
+│       ├── base/               # Abstract base classes
+│       │   ├── __init__.py
+│       │   ├── retriever.py    # BaseRetriever ABC
+│       │   ├── translator.py   # BaseTranslator ABC
+│       │   ├── generator.py    # BaseGenerator ABC
+│       │   ├── indexer.py      # BaseIndexer ABC
+│       │   └── router.py       # BaseRouter ABC
+│       │
+│       ├── query/              # Query understanding
+│       │   ├── __init__.py
+│       │   ├── translation.py  # QueryRewriter, MultiQuery, HyDE, Decomposition, StepBack
+│       │   └── routing.py      # LLMRouter, RuleBasedRouter
+│       │
+│       ├── indexing/           # Document ingestion pipeline
+│       │   ├── __init__.py
+│       │   ├── chunking.py     # RecursiveChunker, SemanticChunker, UnstructuredChunker
+│       │   ├── embeddings.py   # get_embeddings() factory
+│       │   └── vectorstore.py  # create_vector_store(), load_vector_store()
+│       │
+│       ├── retrieval/          # Document retrieval
+│       │   ├── __init__.py
+│       │   ├── search.py       # SimilarityRetriever, MMRRetriever
+│       │   └── reranking.py    # LLMReranker, DiversityReranker
+│       │
+│       ├── generation/         # Answer generation + validation
+│       │   ├── __init__.py
+│       │   ├── generate.py     # SimpleGenerator
+│       │   └── validation.py   # RelevanceChecker, SupportChecker, UtilityChecker
+│       │
+│       ├── graphs/             # LangGraph state machines
+│       │   ├── __init__.py
+│       │   ├── state.py        # AdaptiveState, SelfRAGState (TypedDict)
+│       │   ├── adaptive.py     # build_adaptive_graph() → compiled StateGraph
+│       │   └── self_rag.py     # build_self_rag_graph() → compiled StateGraph
+│       │
+│       ├── techniques/         # User-facing orchestrators
+│       │   ├── __init__.py
+│       │   ├── simple.py       # SimpleRAG class
+│       │   ├── adaptive.py     # AdaptiveRAG class
+│       │   └── self_rag.py     # SelfRAG class
+│       │
+│       └── utils/              # Shared helpers
+│           ├── __init__.py
+│           ├── helpers.py      # get_llm() factory, replace_t_with_space()
+│           └── aws.py          # S3DocumentLoader
 │
 ├── tests/
 │   ├── conftest.py

@@ -14,8 +14,8 @@ response = rag.query("your question")
 Linear pipeline: retrieve top-k similar chunks, generate an answer.
 
 ```python
-from techniques import SimpleRAG
-from config import LLMConfig
+from rag_toolkit.techniques import SimpleRAG
+from rag_toolkit.config import LLMConfig
 
 rag = SimpleRAG(
     pdf_path="handbook.pdf",
@@ -46,8 +46,8 @@ Classifies your query first, then picks the best retrieval strategy:
 | Contextual | `broad` | Retrieve more documents (2x the normal k) |
 
 ```python
-from techniques import AdaptiveRAG
-from config import LLMConfig
+from rag_toolkit.techniques import AdaptiveRAG
+from rag_toolkit.config import LLMConfig
 
 rag = AdaptiveRAG(
     pdf_path="handbook.pdf",
@@ -78,8 +78,8 @@ The most thorough technique. Reflects at every step:
 6. **Checks utility** — is the answer actually useful?
 
 ```python
-from techniques import SelfRAG
-from config import LLMConfig
+from rag_toolkit.techniques import SelfRAG
+from rag_toolkit.config import LLMConfig
 
 rag = SelfRAG(
     pdf_path="handbook.pdf",

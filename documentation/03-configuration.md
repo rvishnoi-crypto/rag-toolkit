@@ -9,7 +9,7 @@ Every component is configurable through Pydantic config objects. All have sensib
 Which LLM to use. Consumed by generation, query translation, routing, reranking.
 
 ```python
-from config import LLMConfig
+from rag_toolkit.config import LLMConfig
 
 LLMConfig(provider="openai", model_name="gpt-4")
 LLMConfig(provider="anthropic", model_name="claude-sonnet-4-5-20250929")
@@ -30,7 +30,7 @@ LLMConfig(provider="openai", model_name="gpt-4", temperature=0.0, max_tokens=400
 Which embedding model to use. Consumed by indexing.
 
 ```python
-from config import EmbeddingConfig
+from rag_toolkit.config import EmbeddingConfig
 
 EmbeddingConfig(provider="openai", model_name="text-embedding-3-small")
 EmbeddingConfig(provider="huggingface", model_name="all-MiniLM-L6-v2")
@@ -51,7 +51,7 @@ EmbeddingConfig(provider="huggingface", model_name="...", model_kwargs={"device"
 How to split documents into chunks. Consumed by indexing.
 
 ```python
-from config import ChunkingConfig
+from rag_toolkit.config import ChunkingConfig
 
 ChunkingConfig(strategy="recursive", chunk_size=1000, chunk_overlap=200)
 ChunkingConfig(strategy="semantic", strategy_kwargs={"breakpoint_type": "percentile"})
@@ -72,7 +72,7 @@ ChunkingConfig(strategy="unstructured")
 How many documents to retrieve. Consumed by retrieval.
 
 ```python
-from config import RetrieverConfig
+from rag_toolkit.config import RetrieverConfig
 
 RetrieverConfig(k=4, search_type="similarity", fetch_k=20)
 ```
@@ -90,7 +90,7 @@ RetrieverConfig(k=4, search_type="similarity", fetch_k=20)
 Where to store embeddings. Consumed by indexing.
 
 ```python
-from config import VectorStoreConfig
+from rag_toolkit.config import VectorStoreConfig
 
 VectorStoreConfig(store_type="faiss")
 VectorStoreConfig(store_type="chroma", persist_directory="./chroma_db")
@@ -108,7 +108,7 @@ VectorStoreConfig(store_type="chroma", persist_directory="./chroma_db")
 Bundles all configs together for convenience:
 
 ```python
-from config import ToolkitConfig, LLMConfig, ChunkingConfig
+from rag_toolkit.config import ToolkitConfig, LLMConfig, ChunkingConfig
 
 config = ToolkitConfig(
     llm=LLMConfig(provider="openai", model_name="gpt-4"),

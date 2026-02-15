@@ -14,17 +14,14 @@ Run:
     python examples/stock_data_example.py
 """
 
-import sys
-sys.path.insert(0, "src")
-
 import sqlite3
 import tempfile
 import os
 
-from config import LLMConfig
-from generation.generate import SimpleGenerator
-from query.construction import TextToSQLConstructor
-from retrieval.structured import SQLRetriever
+from rag_toolkit.config import LLMConfig
+from rag_toolkit.generation.generate import SimpleGenerator
+from rag_toolkit.query.construction import TextToSQLConstructor
+from rag_toolkit.retrieval.structured import SQLRetriever
 
 
 LLM = LLMConfig(provider="anthropic", model_name="claude-sonnet-4-5-20250929")

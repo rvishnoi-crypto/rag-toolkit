@@ -4,9 +4,9 @@ from unittest.mock import MagicMock
 
 import pytest
 
-from retrieval.structured import SQLRetriever
-from models.query import ConstructedQuery, QueryTarget
-from models.result import RetrievalResult
+from rag_toolkit.retrieval.structured import SQLRetriever
+from rag_toolkit.models.query import ConstructedQuery, QueryTarget
+from rag_toolkit.models.result import RetrievalResult
 
 
 class TestSQLRetriever:

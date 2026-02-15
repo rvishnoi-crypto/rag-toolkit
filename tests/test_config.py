@@ -2,7 +2,7 @@
 
 import pytest
 
-from config import (
+from rag_toolkit.config import (
     LLMConfig,
     LLMProvider,
     EmbeddingConfig,

@@ -2,9 +2,9 @@
 
 from unittest.mock import MagicMock, patch
 
-from query.construction import TextToSQLConstructor, SQLOutput
-from config import LLMConfig
-from models.query import ConstructedQuery, QueryTarget
+from rag_toolkit.query.construction import TextToSQLConstructor, SQLOutput
+from rag_toolkit.config import LLMConfig
+from rag_toolkit.models.query import ConstructedQuery, QueryTarget
 
 
 class TestTextToSQLConstructor:

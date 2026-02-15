@@ -1,6 +1,6 @@
 """Tests for query models — pure Pydantic, no API calls."""
 
-from models.query import (
+from rag_toolkit.models.query import (
     QueryType,
     QueryClassification,
     TranslatedQuery,

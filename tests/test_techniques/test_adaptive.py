@@ -4,9 +4,9 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 
-from techniques.adaptive import AdaptiveRAG
-from config import LLMConfig
-from models.result import RAGResponse
+from rag_toolkit.techniques.adaptive import AdaptiveRAG
+from rag_toolkit.config import LLMConfig
+from rag_toolkit.models.result import RAGResponse
 
 
 class TestAdaptiveRAG:

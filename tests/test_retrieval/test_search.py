@@ -1,8 +1,8 @@
 """Tests for retrieval search — uses mock vector store, no API calls."""
 
-from retrieval.search import SimilarityRetriever, MMRRetriever, merge_retrieval_results
-from config import RetrieverConfig
-from models.result import RetrievalResult
+from rag_toolkit.retrieval.search import SimilarityRetriever, MMRRetriever, merge_retrieval_results
+from rag_toolkit.config import RetrieverConfig
+from rag_toolkit.models.result import RetrievalResult
 
 
 class TestSimilarityRetriever:
@@ -78,7 +78,7 @@ class TestMergeResults:
 
     def test_merge_keeps_highest_score(self, sample_scored_documents):
         """When a document appears in multiple results, keep the highest score."""
-        from models.document import Chunk, ChunkMetadata, ScoredDocument
+        from rag_toolkit.models.document import Chunk, ChunkMetadata, ScoredDocument
 
         chunk = Chunk(content="same content", metadata=ChunkMetadata(source="test"))
 

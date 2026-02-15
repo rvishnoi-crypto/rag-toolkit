@@ -1,7 +1,7 @@
 """Tests for query routing — RuleBasedRouter needs no API calls."""
 
-from query.routing import RuleBasedRouter
-from models.query import QueryType, RetrievalPath
+from rag_toolkit.query.routing import RuleBasedRouter
+from rag_toolkit.models.query import QueryType, RetrievalPath
 
 
 class TestRuleBasedRouter:

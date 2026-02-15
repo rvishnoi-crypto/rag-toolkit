@@ -1,6 +1,6 @@
 """Tests for document models — pure Pydantic, no API calls."""
 
-from models.document import Chunk, ChunkMetadata, ScoredDocument
+from rag_toolkit.models.document import Chunk, ChunkMetadata, ScoredDocument
 
 
 def test_chunk_metadata_defaults():

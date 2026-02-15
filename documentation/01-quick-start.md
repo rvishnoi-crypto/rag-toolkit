@@ -21,11 +21,8 @@ export ANTHROPIC_API_KEY="sk-ant-..."
 ## Minimal Example
 
 ```python
-import sys
-sys.path.insert(0, "src")
-
-from techniques import SimpleRAG
-from config import LLMConfig
+from rag_toolkit.techniques import SimpleRAG
+from rag_toolkit.config import LLMConfig
 
 rag = SimpleRAG(
     pdf_path="path/to/your/document.pdf",

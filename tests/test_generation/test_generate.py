@@ -2,9 +2,9 @@
 
 from unittest.mock import MagicMock, patch
 
-from generation.generate import SimpleGenerator
-from config import LLMConfig
-from models.result import GenerationResult, RetrievalResult
+from rag_toolkit.generation.generate import SimpleGenerator
+from rag_toolkit.config import LLMConfig
+from rag_toolkit.models.result import GenerationResult, RetrievalResult
 
 
 class TestSimpleGenerator:

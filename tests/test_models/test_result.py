@@ -1,7 +1,7 @@
 """Tests for result models — pure Pydantic, no API calls."""
 
-from models.document import Chunk, ChunkMetadata, ScoredDocument
-from models.result import (
+from rag_toolkit.models.document import Chunk, ChunkMetadata, ScoredDocument
+from rag_toolkit.models.result import (
     RetrievalResult,
     GenerationResult,
     RelevanceScore,

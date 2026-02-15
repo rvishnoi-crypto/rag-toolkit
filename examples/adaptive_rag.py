@@ -14,11 +14,8 @@ Run:
     python examples/adaptive_rag.py
 """
 
-import sys
-sys.path.insert(0, "src")
-
-from techniques import AdaptiveRAG, SelfRAG
-from config import LLMConfig, RetrieverConfig
+from rag_toolkit.techniques import AdaptiveRAG, SelfRAG
+from rag_toolkit.config import LLMConfig, RetrieverConfig
 
 
 LLM = LLMConfig(provider="openai", model_name="gpt-5-mini")

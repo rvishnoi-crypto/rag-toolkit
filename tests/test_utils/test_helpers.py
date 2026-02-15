@@ -5,8 +5,8 @@ from unittest.mock import MagicMock, patch
 import pytest
 from langchain.schema import Document
 
-from config import LLMConfig, LLMProvider
-from utils.helpers import get_llm, replace_t_with_space
+from rag_toolkit.config import LLMConfig, LLMProvider
+from rag_toolkit.utils.helpers import get_llm, replace_t_with_space
 
 
 class TestGetLLM:

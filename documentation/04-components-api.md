@@ -9,14 +9,14 @@ You don't have to use the techniques. Every component is standalone and can be u
 Transform queries for better retrieval.
 
 ```python
-from query.translation import (
+from rag_toolkit.query.translation import (
     QueryRewriter,
     MultiQueryTranslator,
     StepBackTranslator,
     DecompositionTranslator,
     HyDETranslator,
 )
-from config import LLMConfig
+from rag_toolkit.config import LLMConfig
 
 llm = LLMConfig(provider="openai", model_name="gpt-4")
 ```
@@ -72,8 +72,8 @@ Classify queries and decide retrieval path.
 ### LLMRouter — Production (understands intent)
 
 ```python
-from query.routing import LLMRouter
-from config import LLMConfig
+from rag_toolkit.query.routing import LLMRouter
+from rag_toolkit.config import LLMConfig
 
 router = LLMRouter(
     llm_config=LLMConfig(),
@@ -88,7 +88,7 @@ decision.strategy                      # "text_to_sql"
 ### RuleBasedRouter — Free, instant, good for prototyping
 
 ```python
-from query.routing import RuleBasedRouter
+from rag_toolkit.query.routing import RuleBasedRouter
 
 router = RuleBasedRouter()
 decision = router.route("What is RAG?")
@@ -102,8 +102,8 @@ decision.classification.query_type     # QueryType.FACTUAL
 ### SimilarityRetriever — Cosine similarity, top-k
 
 ```python
-from retrieval.search import SimilarityRetriever
-from config import RetrieverConfig
+from rag_toolkit.retrieval.search import SimilarityRetriever
+from rag_toolkit.config import RetrieverConfig
 
 retriever = SimilarityRetriever(vector_store, RetrieverConfig(k=4))
 result = retriever.retrieve("What is RAG?")
@@ -114,7 +114,7 @@ result = retriever.retrieve("What is RAG?")
 Balances relevance vs diversity. Each new document must be relevant BUT different from already-selected ones.
 
 ```python
-from retrieval.search import MMRRetriever
+from rag_toolkit.retrieval.search import MMRRetriever
 
 retriever = MMRRetriever(vector_store, RetrieverConfig(k=4), lambda_mult=0.5)
 result = retriever.retrieve("What is RAG?")
@@ -123,8 +123,8 @@ result = retriever.retrieve("What is RAG?")
 ### LLMReranker — LLM scores each doc's relevance
 
 ```python
-from retrieval.reranking import LLMReranker
-from config import LLMConfig
+from rag_toolkit.retrieval.reranking import LLMReranker
+from rag_toolkit.config import LLMConfig
 
 reranker = LLMReranker(LLMConfig())
 reranked = reranker.rerank("What is RAG?", retrieval_result, top_k=3)
@@ -137,8 +137,8 @@ reranked = reranker.rerank("What is RAG?", retrieval_result, top_k=3)
 ### SimpleGenerator
 
 ```python
-from generation.generate import SimpleGenerator
-from config import LLMConfig
+from rag_toolkit.generation.generate import SimpleGenerator
+from rag_toolkit.config import LLMConfig
 
 generator = SimpleGenerator(LLMConfig())
 
@@ -156,7 +156,7 @@ answer = generator.generate_without_context("What is RAG?")
 ### RetrievalDecider — Should we even retrieve?
 
 ```python
-from generation.validation import RetrievalDecider
+from rag_toolkit.generation.validation import RetrievalDecider
 
 decider = RetrievalDecider(LLMConfig())
 decision = decider.should_retrieve("What is 2 + 2?")
@@ -166,7 +166,7 @@ decision = decider.should_retrieve("What is 2 + 2?")
 ### RelevanceChecker — Are the retrieved docs relevant?
 
 ```python
-from generation.validation import RelevanceChecker
+from rag_toolkit.generation.validation import RelevanceChecker
 
 checker = RelevanceChecker(LLMConfig())
 scores = checker.check_retrieval("What is RAG?", retrieval_result)
@@ -176,7 +176,7 @@ scores = checker.check_retrieval("What is RAG?", retrieval_result)
 ### SupportChecker — Is the answer grounded in the docs?
 
 ```python
-from generation.validation import SupportChecker
+from rag_toolkit.generation.validation import SupportChecker
 
 support = SupportChecker(LLMConfig())
 score = support.check_generation(answer_text, retrieval_result)
@@ -186,7 +186,7 @@ score = support.check_generation(answer_text, retrieval_result)
 ### UtilityChecker — Is the answer useful?
 
 ```python
-from generation.validation import UtilityChecker
+from rag_toolkit.generation.validation import UtilityChecker
 
 utility = UtilityChecker(LLMConfig())
 score = utility.check("What is RAG?", answer_text)
@@ -200,8 +200,8 @@ score = utility.check("What is RAG?", answer_text)
 ### Chunking
 
 ```python
-from indexing.chunking import get_chunker
-from config import ChunkingConfig
+from rag_toolkit.indexing.chunking import get_chunker
+from rag_toolkit.config import ChunkingConfig
 
 chunker = get_chunker(ChunkingConfig(strategy="recursive"))
 chunks = chunker.chunk(documents)  # list[Document] → list[Document]
@@ -210,8 +210,8 @@ chunks = chunker.chunk(documents)  # list[Document] → list[Document]
 ### Vector Store
 
 ```python
-from indexing.vectorstore import create_vector_store, load_vector_store
-from config import EmbeddingConfig, VectorStoreConfig
+from rag_toolkit.indexing.vectorstore import create_vector_store, load_vector_store
+from rag_toolkit.config import EmbeddingConfig, VectorStoreConfig
 
 # Create new
 store = create_vector_store(chunks, EmbeddingConfig(), VectorStoreConfig())
@@ -228,7 +228,7 @@ store = load_vector_store(
 ## S3 Document Loading
 
 ```python
-from utils.aws import S3DocumentLoader
+from rag_toolkit.utils.aws import S3DocumentLoader
 
 # Single file
 loader = S3DocumentLoader(bucket="my-docs", key="reports/q4.pdf")

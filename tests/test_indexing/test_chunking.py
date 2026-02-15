@@ -2,8 +2,8 @@
 
 from langchain.schema import Document
 
-from indexing.chunking import RecursiveChunker, get_chunker
-from config import ChunkingConfig
+from rag_toolkit.indexing.chunking import RecursiveChunker, get_chunker
+from rag_toolkit.config import ChunkingConfig
 
 
 def test_recursive_chunker(sample_documents, chunking_config):

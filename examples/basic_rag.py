@@ -10,11 +10,8 @@ Run:
     python examples/basic_rag.py
 """
 
-import sys
-sys.path.insert(0, "src")
-
-from techniques import SimpleRAG
-from config import LLMConfig, RetrieverConfig
+from rag_toolkit.techniques import SimpleRAG
+from rag_toolkit.config import LLMConfig, RetrieverConfig
 
 
 def main():

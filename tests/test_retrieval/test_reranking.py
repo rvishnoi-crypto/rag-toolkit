@@ -2,10 +2,10 @@
 
 from unittest.mock import MagicMock, patch
 
-from retrieval.reranking import LLMReranker, DiversityReranker
-from config import LLMConfig
-from models.document import Chunk, ChunkMetadata, ScoredDocument
-from models.result import RelevanceScore, RetrievalResult
+from rag_toolkit.retrieval.reranking import LLMReranker, DiversityReranker
+from rag_toolkit.config import LLMConfig
+from rag_toolkit.models.document import Chunk, ChunkMetadata, ScoredDocument
+from rag_toolkit.models.result import RelevanceScore, RetrievalResult
 
 
 def _make_retrieval_result(n=5):
