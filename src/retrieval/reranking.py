@@ -9,10 +9,6 @@ better relevance. The typical pattern is:
 This two-stage approach gives you both speed (vector search is fast)
 and accuracy (reranking is more precise).
 
-In GeneralBot's RerankingRAG, three reranking strategies were methods
-on a single class. Here each is standalone and works on any
-RetrievalResult regardless of how it was retrieved.
-
 Usage:
     from retrieval.reranking import LLMReranker
 

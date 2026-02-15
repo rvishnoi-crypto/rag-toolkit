@@ -4,10 +4,7 @@ Answer generation from retrieved context.
 This is the final stage of any RAG pipeline: take the query + retrieved
 documents and produce a grounded answer.
 
-In GeneralBot, generation was scattered across each technique's query()
-method — every technique had its own _generate_answer() with slightly
-different prompts. Here it's one reusable component that any technique
-can call.
+Here it's one reusable component that any technique can call.
 
 Two modes:
     - WITH context: formats retrieved documents into numbered context,

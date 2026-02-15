@@ -4,10 +4,6 @@ Vector store retrieval implementations.
 These are the "vector path" retrievers — they take a natural language query
 and return relevant documents from a vector store using embedding similarity.
 
-In GeneralBot, vector search was buried inside each technique:
-    self.vector_store.similarity_search(query, k=k)
-    self.vector_store.max_marginal_relevance_search(query, k=k, ...)
-
 Here each strategy is its own class implementing BaseRetriever, so you
 can swap them without touching any other code.
 

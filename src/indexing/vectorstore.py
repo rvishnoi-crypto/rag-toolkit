@@ -6,11 +6,6 @@ This is the final step of the indexing pipeline:
 
     Loader → Chunker → Embeddings → VectorStore (this file)
 
-In GeneralBot, vector store creation was inside each technique's
-create_vector_store() method, always hardcoded to FAISS. Here it's a
-standalone factory that supports multiple backends and handles both
-creating new stores and loading existing ones.
-
 Key difference between FAISS and Chroma:
     FAISS  — In-memory by default. Fast, simple, no server needed.
              Good for prototyping and small-to-medium datasets.

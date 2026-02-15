@@ -9,9 +9,6 @@ answer on three dimensions:
     2. Support: Is the answer grounded in (supported by) the documents?
     3. Utility: Is the answer actually useful to the user?
 
-In GeneralBot's self_rag.py, these were private methods on the SelfRAG
-class. Here they're standalone validators that any technique can use.
-
 Each validator uses structured output (Pydantic model) so the LLM
 returns a typed score + reasoning, not free text we'd need to parse.
 

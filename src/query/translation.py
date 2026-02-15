@@ -4,8 +4,7 @@ Query translation implementations.
 Each translator takes a user query and transforms it into one or more
 queries optimized for vector retrieval. They all implement BaseTranslator.
 
-In GeneralBot's QueryTransformRAG, these were methods on a single class
-(query_rewrite, multi_query, step_back_query, hyde_query). Here each is
+Here each is
 its own class so you can compose them freely:
 
     translator = MultiQueryTranslator(llm_config)

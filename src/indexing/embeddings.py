@@ -4,12 +4,6 @@ Embedding model factory.
 Returns the right LangChain embedding model based on EmbeddingConfig.
 This is the single place that maps provider strings to actual classes.
 
-In GeneralBot, embedding creation was inside create_vector_store() with
-a hardcoded if/elif for providers. Here it's a standalone factory so:
-    - Chunkers can use it (SemanticChunker needs embeddings for breakpoints)
-    - Vector stores can use it (needs embeddings for indexing)
-    - Anyone can use it (rerankers, HyDE, etc.)
-
 Supported providers:
     "openai"      → OpenAIEmbeddings (API-based, default)
     "huggingface" → HuggingFaceEmbeddings (local sentence-transformers)
